@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row justify-content-center align-items center mt-5">
+    <div class="col-md-4 shadow p-4">
+      <p class="h2 text-center">{{ isRegister ? "Register" : "Login" }}</p>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="mb-3">
+          <label for="" class="from-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            ngModel
+            required
+            email
+            #email="ngModel"
+            [ngClass]="{'is-invalid' :email.invalid && email.touched}"
+          />
+          <span class="invalid-feedback" *ngIf="email.invalid && email.touched"
+            >Email ID is required</span
+          >
+        </div>
+        <div class="mb-3">
+          <label for="" class="from-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            ngModel
+            required
+            #password="ngModel"
+            [ngClass]="{'is-invalid' :password.invalid && password.touched}"
+          />
+          <span class="invalid-feedback">Password is required</span>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary w-100" [disabled]="!form.valid">
+            {{ isRegister ? "Register" : "Login" }}
+          </button>
+        </div>
+      </form>
+      <button class="btn btn-success w-100" (click)="onRegister()">
+        {{ !isRegister ? "Register" : "Login" }}
+      </button>
+    </div>
+  </div>
+</div>
